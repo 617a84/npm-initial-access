@@ -1,0 +1,19 @@
+services:
+  c2lab:
+    platform: linux/amd64
+    tty: true
+    init: true
+    # will build ./docker/c2_lab/Dockerfile
+    build: ./docker/c2lab/
+    # restart: unless-stopped
+    environment:
+      - TESTVAR=${TESTVAR}
+    networks:
+      - labnetwork
+
+networks:
+  labnetwork:
+    ipam:
+      driver: default
+      config:
+        - subnet: "10.10.0.0/28"
